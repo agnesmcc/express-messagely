@@ -55,9 +55,19 @@ describe("Test User class", function () {
       first_name: "Test",
       last_name: "Testy",
       phone: "+14155550000",
-      last_login_at: expect.any(Date),
+      last_login_at: null,
       join_at: expect.any(Date),
     });
+  });
+
+  test("can get fails with unknown user", async function () {
+    try {
+      await User.get("does-not-exist");
+      throw new Error("should not get here");
+    } catch (error) {
+      expect(error.status).toEqual(404);
+      expect(error.message).toBe("No such user: does-not-exist");
+    }
   });
 
   test("can get all", async function () {

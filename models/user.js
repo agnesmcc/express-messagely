@@ -34,7 +34,7 @@ class User {
   /** Authenticate: is this username/password valid? Returns boolean. */
 
   static async authenticate(username, password) {
-    await checkUserExists(username);
+    // await checkUserExists(username);
     const result = await db.query(
       `SELECT username, password
        FROM users
